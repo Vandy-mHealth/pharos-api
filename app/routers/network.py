@@ -2,8 +2,7 @@ from uuid import UUID
 
 import app.core.schemas as schemas
 import app.db.crud as crud
-from app.db import Network
-from fastapi import APIRouter, Query
+from fastapi import APIRouter, HTTPException, Query
 
 network_router = APIRouter()
 
@@ -22,4 +21,10 @@ def read_network_measurements(
 def create_network_measurements_for_user(
     user_id: UUID, landmark_id: int, network: schemas.NetworkCreate
 ):
+    db_user = crud.get_user_by_id(id=user_id)
+    if db_user is None:
+        raise HTTPException(status_code=404, detail="User not found")
+    db_landmark = crud.get_landmark_by_id(id=landmark_id)
+    if db_landmark is None:
+        raise HTTPException(status_code=404, detail="Landmark not found")
     return crud.create_user_network_measurement(user_id, landmark_id, network)

@@ -3,7 +3,7 @@ from uuid import UUID
 import app.core.schemas as schemas
 import app.db.crud as crud
 from app.db import User
-from fastapi import APIRouter, Body, Query
+from fastapi import APIRouter, Body, HTTPException, Query
 
 landmark_router = APIRouter()
 
@@ -31,4 +31,7 @@ def create_landmark_for_user(
     network: schemas.NetworkCreate = None,
     photo: schemas.PhotoCreate = None,
 ):
+    db_user = crud.get_user_by_id(id=user_id)
+    if db_user is None:
+        raise HTTPException(status_code=404, detail="User not found")
     return crud.create_user_landmark(user_id, landmark, network, photo)

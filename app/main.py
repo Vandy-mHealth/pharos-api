@@ -32,7 +32,7 @@ def get_db(db_state=Depends(reset_db_state)):
 
 
 def get_application():
-    _app = FastAPI(title=settings.PROJECT_NAME, openapi_prefix=openapi_prefix)
+    _app = FastAPI(title=settings.PROJECT_NAME, root_path=openapi_prefix)
 
     _app.add_middleware(
         CORSMiddleware,

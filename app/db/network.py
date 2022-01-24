@@ -8,6 +8,7 @@ from peewee import (
     DateTimeField,
     DoubleField,
     ForeignKeyField,
+    IntegerField,
 )
 
 from .landmark import Landmark
@@ -20,14 +21,16 @@ class Network(BasePeeweeModel):
     ping_time = DoubleField()
     frequency = DoubleField()
     file_size = DoubleField()
-    file_url = CharField()
+    file_location = CharField()
     download_speed = DoubleField()
     download_latency = DoubleField()
     download_duration = DoubleField()
     upload_speed = DoubleField()
     upload_duration = DoubleField()
-    network_strength = CharField()
     timestamp = DateTimeField(default=datetime.now())
+    gps_longitude = DoubleField()
+    gps_latitude = DoubleField()
+    device_id = IntegerField()
 
     landmark = ForeignKeyField(Landmark, backref="network_measurements")
     owner = ForeignKeyField(User, backref="network_measurements")

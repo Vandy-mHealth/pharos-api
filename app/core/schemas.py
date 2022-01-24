@@ -3,7 +3,7 @@ from typing import Any, List, Optional
 from uuid import UUID
 
 import peewee
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr, Field
 from pydantic.utils import GetterDict
 
 
@@ -38,13 +38,15 @@ class NetworkBase(BaseModel):
     ping_time: float
     frequency: float
     file_size: float
-    file_url: float
+    file_location: str
     download_speed: float
     download_latency: float
     download_duration: float
     upload_speed: float
     upload_duration: float
-    network_strength: float
+    gps_latitude: float
+    gps_longitude: float
+    device_id: int
 
 
 class NetworkCreate(NetworkBase):
@@ -63,10 +65,11 @@ class Network(NetworkBase):
 
 
 class LandmarkBase(BaseModel):
-    lat: float
-    lon: float
+    latitude: float
+    longitude: float
     landmark_type: str
-    gps_strength: str
+    device_id: int
+    file_url: str
 
 
 class LandmarkCreate(LandmarkBase):
@@ -75,6 +78,7 @@ class LandmarkCreate(LandmarkBase):
 
 class Landmark(LandmarkBase):
     id: int
+    timestamp: datetime
     owner_id: UUID
     network_measurements: List[Network] = []
     photos: List[Photo] = []
@@ -85,17 +89,26 @@ class Landmark(LandmarkBase):
 
 
 class UserBase(BaseModel):
-    username: str
+    email: EmailStr
+    pin: int
+    full_name: str
+
+
+class UserSignin(BaseModel):
+    email: EmailStr
+    pin: int
 
 
 class UserCreate(UserBase):
-    pin: int
+    pass
 
 
 class User(UserBase):
     id: UUID
-    pin: int
     last_login: datetime
+    organization: Optional[str] = None
+    address: Optional[str] = None
+
     landmarks: List[Landmark] = []
     photos: List[Photo] = []
     network_measurements: List[Network] = []

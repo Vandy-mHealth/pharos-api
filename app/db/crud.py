@@ -5,13 +5,17 @@ from app.db import Landmark, Network, Photo, User
 
 
 def create_user(user: schemas.UserCreate):
-    db_user = User.create(username=user.username, pin=user.pin)
+    db_user = User.create(email=user.email, pin=user.pin, full_name=user.full_name)
     return db_user
 
 
-def get_user_by_name(username: str):
-    db_user = User.select().where(User.username == username).first()
+def get_user_by_email(email: str):
+    db_user = User.select().where(User.email == email).first()
     return db_user
+
+
+def get_user_by_id(id: UUID):
+    return User.select().where(User.id == id).first()
 
 
 def get_user_landmarks(user_id: UUID, skip: int = 0, limit: int = 100):
@@ -24,6 +28,10 @@ def get_user_landmarks(user_id: UUID, skip: int = 0, limit: int = 100):
         .offset(skip)
         .limit(limit)
     )
+
+
+def get_landmark_by_id(id: int):
+    return Landmark.select().where(Landmark.id == id).first()
 
 
 def create_user_landmark(

@@ -8,6 +8,7 @@ provider:
   profile: mhealth
   stage: ${opt:stage, "dev"}
   lambdaHashingVersion: "20201221"
+
 plugins:
   - serverless-python-requirements
 custom:

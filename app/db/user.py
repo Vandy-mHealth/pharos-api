@@ -7,6 +7,9 @@ from peewee import SQL, BigIntegerField, CharField, DateTimeField, UUIDField
 
 class User(BasePeeweeModel):
     id = UUIDField(primary_key=True, default=uuid.uuid4)
-    username = CharField(index=True, null=True)
-    pin = BigIntegerField(null=True)
-    last_login = DateTimeField(default=datetime.now())
+    email = CharField()
+    pin = BigIntegerField()
+    full_name = CharField()
+    last_login = DateTimeField(default=datetime.now)
+    organization = CharField(null=True)
+    address = CharField(null=True)
