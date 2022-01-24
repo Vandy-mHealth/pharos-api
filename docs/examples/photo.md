@@ -49,7 +49,7 @@ read photos for a specific user
 GET /photo/?user_id=<user_id>
 ```
 
-```js
+```javascript
 axios.get(url)
 
 // returns

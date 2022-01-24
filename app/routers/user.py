@@ -1,6 +1,8 @@
+from uuid import UUID
+
 import app.core.schemas as schemas
 import app.db.crud as crud
-from fastapi import APIRouter, HTTPException, Query
+from fastapi import APIRouter, Body, HTTPException, Query
 
 user_router = APIRouter()
 
@@ -19,6 +21,14 @@ def create_user(user: schemas.UserCreate):
         )
 
     return crud.create_user(user)
+
+
+@user_router.put("/", response_model=schemas.User)
+def update_user(user_id: UUID = Query(...), args: schemas.UserUpdate = Body(...)):
+    db_user = crud.get_user_by_id(id=user_id)
+    if db_user is None:
+        raise HTTPException(status_code=404, detail="User not found")
+    return crud.update_user(user_id, args)
 
 
 @user_router.post("/signin", response_model=schemas.User)

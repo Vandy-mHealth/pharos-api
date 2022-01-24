@@ -5,6 +5,19 @@ theme:
     - navigation.sections
 repo_url: https://github.com/Vandy-mHealth/pharos-api
 
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+
+extra_css:
+  - stylesheets/_extra.css
+
 nav:
   - Routes: index.md
   - Example Request:

@@ -22,7 +22,7 @@ example response
   "pin": 123456,
   "full_name": "jane doe",
   "id": "c301644d-7a4f-4294-adcf-6646d2735202",
-  "last_login": "2022-01-24T12:35:47.554672",
+  "created_at": "2022-01-24T12:35:47.554672",
   "organization": null,
   "address": null,
   "landmarks": [],
@@ -54,7 +54,7 @@ example response
   "pin": 123456,
   "full_name": "jane doe",
   "id": "c301644d-7a4f-4294-adcf-6646d2735202",
-  "last_login": "2022-01-24T12:35:47.554672",
+  "created_at": "2022-01-24T12:35:47.554672",
   "organization": null,
   "address": null,
   "landmarks": [],
@@ -81,3 +81,35 @@ example response when pin is wrong
 }
 ```
 
+## Update user
+
+```
+PUT /user/?user_id=<user_id>
+```
+
+example request
+
+```js
+axios.post(url, {
+  "email" : "newemail@example.com",
+  "address": "somewhere in the world"
+})
+```
+
+example response
+
+
+```json
+{
+  "email": "newemail@example.com",
+  "pin": 123456,
+  "full_name": "jane doe",
+  "id": "c301644d-7a4f-4294-adcf-6646d2735202",
+  "created_at": "2022-01-24T12:35:47.554672",
+  "organization": null,
+  "address": "somewhere in the world",
+  "landmarks": [],
+  "photos": [],
+  "network_measurements": []
+}
+```

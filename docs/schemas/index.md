@@ -13,7 +13,7 @@ id     |  | auto UUID (PK) !
 email | email-like string ! | string !
 pin | big integer ! (6 digits) | big integer !
 full_name | string ! | string !
-last_login | datetime | datetime
+created_at | datetime | datetime
 organization | string | string
 address | string | string
 
@@ -43,7 +43,7 @@ and the returned response (from the database) will be
   "pin": 123456,
   "full_name": "jane doe",
   "id": "c301644d-7a4f-4294-adcf-6646d2735202",
-  "last_login": "2022-01-24T12:35:47.554672",
+  "created_at": "2022-01-24T12:35:47.554672",
   "organization": null,
   "address": null,
   "landmarks": [],

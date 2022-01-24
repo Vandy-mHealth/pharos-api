@@ -10,6 +10,6 @@ class User(BasePeeweeModel):
     email = CharField()
     pin = BigIntegerField()
     full_name = CharField()
-    last_login = DateTimeField(default=datetime.now)
+    created_at = DateTimeField(default=datetime.now)
     organization = CharField(null=True)
     address = CharField(null=True)

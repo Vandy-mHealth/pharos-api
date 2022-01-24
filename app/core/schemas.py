@@ -103,9 +103,17 @@ class UserCreate(UserBase):
     pass
 
 
+class UserUpdate(BaseModel):
+    pin: int = None
+    full_name: str = None
+    email: Optional[EmailStr] = None
+    organization: Optional[str] = None
+    address: Optional[str] = None
+
+
 class User(UserBase):
     id: UUID
-    last_login: datetime
+    created_at: datetime
     organization: Optional[str] = None
     address: Optional[str] = None
 

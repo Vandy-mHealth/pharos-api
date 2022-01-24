@@ -18,6 +18,12 @@ def get_user_by_id(id: UUID):
     return User.select().where(User.id == id).first()
 
 
+def update_user(id: UUID, args: schemas.UserUpdate):
+    args = args.dict()
+    User.update(args).where(User.id == id).execute()
+    return get_user_by_id(id)
+
+
 def get_user_landmarks(user_id: UUID, skip: int = 0, limit: int = 100):
     return list(
         Landmark.select()

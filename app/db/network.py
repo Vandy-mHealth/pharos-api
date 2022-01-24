@@ -2,7 +2,6 @@ from datetime import datetime
 
 from app.db.database import BasePeeweeModel
 from peewee import (
-    SQL,
     AutoField,
     CharField,
     DateTimeField,

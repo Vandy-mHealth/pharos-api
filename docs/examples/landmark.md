@@ -77,7 +77,9 @@ example response
 }
 ```
 
-if `network_measurements` or `photos` field is not provided, only the landmark will be created.
+!!! note
+
+    Landmarks can be created without uploading network measurements or photos in the first place. If `network_measurements` or `photos` field is not provided, only the landmark will be created.
 
 example response when user id does not exist
 

@@ -2,7 +2,7 @@ import datetime
 from datetime import datetime
 
 from app.db.database import BasePeeweeModel
-from peewee import SQL, AutoField, CharField, DateTimeField, ForeignKeyField
+from peewee import AutoField, CharField, DateTimeField, ForeignKeyField
 
 from .landmark import Landmark
 from .user import User
