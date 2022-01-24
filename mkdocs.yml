@@ -1,6 +1,8 @@
 site_name: "Pharos API Documentation"
 theme:
   name: material
+  features:
+    - navigation.sections
 repo_url: https://github.com/Vandy-mHealth/pharos-api
 
 nav:
