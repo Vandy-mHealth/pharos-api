@@ -1,0 +1,42 @@
+service: pharos-api
+package:
+  individually: true
+provider:
+  name: aws
+  runtime: python3.9
+  region: us-east-1
+  profile: mhealth
+  stage: ${opt:stage, "dev"}
+  lambdaHashingVersion: "20201221"
+plugins:
+  - serverless-python-requirements
+custom:
+  pythonRequirements:
+    dockerizePip: true
+    layer:
+      name: pharos-dev-layer
+      description: pharos-dev-layer
+      compatibleRuntimes:
+        - python3.9
+functions:
+  app:
+    package:
+      include:
+        - "app/**"
+      exclude:
+        - "requirements.txt"
+        - "package.json"
+        - "pnpm-lock.json"
+        - ".serverless/**"
+        - "venv/**"
+        - "tests/**"
+        - "node_modules/**"
+    handler: app.main.handler
+    environment:
+      STAGE: ${self:provider.stage}
+    layers:
+      - { Ref: PythonRequirementsLambdaLayer }
+    events:
+      - http:
+          method: any
+          path: /{proxy+}
