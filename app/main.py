@@ -1,10 +1,18 @@
+import os
+
 from fastapi import Depends, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from mangum import Mangum
 
 from app.core.config import settings
 from app.db import Landmark, Network, Photo, User, db, db_state_default
-from app.routers import landmark_router, network_router, photo_router, user_router
+from app.routers import (landmark_router, network_router, photo_router,
+                         user_router)
+
+stage = os.environ.get('STAGE', None)
+
+openapi_prefix = f"/{stage}" if stage else "/"
+​
 
 db.connect()
 db.create_tables([User, Landmark, Network, Photo])
@@ -26,7 +34,7 @@ def get_db(db_state=Depends(reset_db_state)):
 
 
 def get_application():
-    _app = FastAPI(title=settings.PROJECT_NAME)
+    _app = FastAPI(title=settings.PROJECT_NAME, openapi_prefix=openapi_prefix)
 
     _app.add_middleware(
         CORSMiddleware,
