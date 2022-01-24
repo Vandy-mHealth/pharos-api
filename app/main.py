@@ -1,9 +1,10 @@
 from fastapi import Depends, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from mangum import Mangum
 
 from app.core.config import settings
 from app.db import Landmark, Network, Photo, User, db, db_state_default
-from app.routers import landmark_router, user_router
+from app.routers import landmark_router, network_router, photo_router, user_router
 
 db.connect()
 db.create_tables([User, Landmark, Network, Photo])
@@ -43,23 +44,34 @@ app = get_application()
 
 @app.get("/")
 def hello():
-    return {
-        "error_code": 1,
-        "msg": "welcome to beacon API, available routes are /users ...",
-        "data": "",
-        "error": "",
-    }
+    return {"message": "hello from Pharos API"}
 
 
 app.include_router(
     user_router,
     prefix="/user",
-    tags=["query and authentication"],
+    tags=["authentication and user-related queries"],
     dependencies=[Depends(get_db)],
 )
 app.include_router(
     landmark_router,
     prefix="/landmark",
-    tags=["query landmark"],
+    tags=["landmark and user-related queries"],
     dependencies=[Depends(get_db)],
 )
+app.include_router(
+    network_router,
+    prefix="/network",
+    tags=["network measurement related queries"],
+    dependencies=[Depends(get_db)],
+)
+
+app.include_router(
+    photo_router,
+    prefix="/photo",
+    tags=["photo related queries"],
+    dependencies=[Depends(get_db)],
+)
+
+
+handler = Mangum(app)

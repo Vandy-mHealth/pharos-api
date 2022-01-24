@@ -27,6 +27,7 @@ class Photo(PhotoBase):
     id: int
     uploaded_at: datetime
     landmark_id: int
+    owner_id: UUID
 
     class Config:
         orm_mode = True
@@ -54,6 +55,7 @@ class Network(NetworkBase):
     id: int
     timestamp: datetime
     landmark_id: int
+    owner_id: UUID
 
     class Config:
         orm_mode = True
@@ -95,6 +97,8 @@ class User(UserBase):
     pin: int
     last_login: datetime
     landmarks: List[Landmark] = []
+    photos: List[Photo] = []
+    network_measurements: List[Network] = []
 
     class Config:
         orm_mode = True

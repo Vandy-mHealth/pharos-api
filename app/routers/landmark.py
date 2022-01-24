@@ -3,7 +3,7 @@ from uuid import UUID
 import app.core.schemas as schemas
 import app.db.crud as crud
 from app.db import User
-from fastapi import APIRouter, Query
+from fastapi import APIRouter, Body, Query
 
 landmark_router = APIRouter()
 
@@ -18,7 +18,7 @@ def read_landmarks_for_user(
     skip: int = 0,
     limit: int = 100,
 ):
-    if user_id:
+    if user_id is not None:
         return crud.get_user_landmarks(user_id=user_id, skip=skip, limit=limit)
     else:
         return crud.get_landmarks(skip=skip, limit=limit)
@@ -28,7 +28,7 @@ def read_landmarks_for_user(
 def create_landmark_for_user(
     user_id: UUID,
     landmark: schemas.LandmarkCreate,
-    network: schemas.NetworkCreate,
-    photo: schemas.PhotoCreate,
+    network: schemas.NetworkCreate = None,
+    photo: schemas.PhotoCreate = None,
 ):
     return crud.create_user_landmark(user_id, landmark, network, photo)

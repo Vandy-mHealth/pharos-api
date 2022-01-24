@@ -11,6 +11,7 @@ from peewee import (
 )
 
 from .landmark import Landmark
+from .user import User
 
 
 class Network(BasePeeweeModel):
@@ -29,3 +30,4 @@ class Network(BasePeeweeModel):
     timestamp = DateTimeField(default=datetime.now())
 
     landmark = ForeignKeyField(Landmark, backref="network_measurements")
+    owner = ForeignKeyField(User, backref="network_measurements")
