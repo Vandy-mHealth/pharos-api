@@ -6,13 +6,11 @@ from mangum import Mangum
 
 from app.core.config import settings
 from app.db import Landmark, Network, Photo, User, db, db_state_default
-from app.routers import (landmark_router, network_router, photo_router,
-                         user_router)
+from app.routers import landmark_router, network_router, photo_router, user_router
 
-stage = os.environ.get('STAGE', None)
+stage = os.environ.get("STAGE", None)
 
 openapi_prefix = f"/{stage}" if stage else "/"
-​
 
 db.connect()
 db.create_tables([User, Landmark, Network, Photo])
