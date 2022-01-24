@@ -1,0 +1,18 @@
+site_name: "Pharos API Documentation"
+theme:
+  name: material
+repo_url: https://github.com/Vandy-mHealth/pharos-api
+
+nav:
+  - Routes: index.md
+  - Example Request:
+      - User: examples/user.md
+      - Landmark: examples/landmark.md
+      - Network: examples/network.md
+      - Photo: examples/photo.md
+  - Schema:
+      - General: schemas/index.md
+      - User: schemas/user.md
+      - Landmark: schemas/landmark.md
+      - Network: schemas/network.md
+      - Photo: schemas/photo.md
