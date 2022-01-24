@@ -18,7 +18,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm ci
+      - run: npm global install pnpm
+      - run: pnpm install --frozen-lockfile
       - name: serverless deploy
         uses: serverless/github-action@master
         with:
