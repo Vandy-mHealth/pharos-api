@@ -1,4 +1,5 @@
 import datetime
+
 from datetime import datetime
 
 from app.db.database import BasePeeweeModel
@@ -15,3 +16,4 @@ class Photo(BasePeeweeModel):
 
     landmark = ForeignKeyField(Landmark, backref="photos")
     owner = ForeignKeyField(User, backref="photos")
+
