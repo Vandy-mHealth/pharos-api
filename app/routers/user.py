@@ -17,7 +17,7 @@ def create_user(user: schemas.UserCreate):
     db_user = crud.get_user_by_email(email=user.email)
     if db_user:
         raise HTTPException(
-            status_code=400, detail=f"User already exists with name {db_user.username}"
+            status_code=400, detail=f"User already exists with name {db_user.email}"
         )
 
     return crud.create_user(user)
