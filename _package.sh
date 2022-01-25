@@ -1,4 +1,4 @@
 cd venv/lib/python3.9/site-packages
-zip -r9 ../../../../function.zip .
+zip -r9 ../../../../api.zip .
 cd ../../../../
-zip -g ./function.zip -r app
+zip -g ./api.zip -r app
