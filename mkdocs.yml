@@ -3,6 +3,8 @@ theme:
   name: material
   features:
     - navigation.sections
+  font:
+    code: Fira Code
 repo_url: https://github.com/Vandy-mHealth/pharos-api
 
 markdown_extensions:
