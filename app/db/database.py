@@ -23,7 +23,7 @@ db_state_default = {"closed": None, "conn": None, "ctx": None, "transactions": N
 db_state = ContextVar("db_state", default=db_state_default.copy())
 
 db = PostgresqlDatabase(
-    os.getenv("DB_NAME"),
+    "postgres",
     user=os.getenv("DB_USER"),
     password=os.getenv("DB_PASSWORD"),
     host=os.getenv("DB_HOST"),

@@ -16,6 +16,7 @@ db.connect()
 db.create_tables([User, Landmark, Network, Photo])
 db.close()
 
+
 async def reset_db_state():
     db._state._state.set(db_state_default.copy())
     db._state.reset()

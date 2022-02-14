@@ -144,3 +144,5 @@ node_modules
 .serverless
 
 *.zip
+
+Makefile
