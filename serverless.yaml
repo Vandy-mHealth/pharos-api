@@ -13,7 +13,7 @@ plugins:
   - serverless-python-requirements
 custom:
   pythonRequirements:
-    dockerizePip: true
+    dockerFile: Dockerfile
     layer:
       name: pharos-dev-layer
       description: pharos-dev-layer
